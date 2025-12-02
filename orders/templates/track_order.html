@@ -1,0 +1,35 @@
+{% extends 'blank.html' %}
+{% block content %}
+
+{% include 'banner.html' with page_title="Track Order" %}
+
+<div class="container py-5">
+    <div class="card p-4 shadow">
+
+        <h4 class="text-primary mb-3">Order #{{ order.id }}</h4>
+
+        <h5>Status: <span class="text-success">{{ current_status }}</span></h5>
+
+        <div class="progress mt-4" style="height: 30px;">
+            {% if order.order_status == 0 %}
+                <div class="progress-bar bg-warning" style="width: 20%;">Order Placed</div>
+
+            {% elif order.order_status == 1 %}
+                <div class="progress-bar bg-info" style="width: 40%;">Order Confirmed</div>
+
+            {% elif order.order_status == 2 %}
+                <div class="progress-bar bg-primary" style="width: 70%;">Processing</div>
+
+            {% elif order.order_status == 3 %}
+                <div class="progress-bar bg-success" style="width: 100%;">Delivered</div>
+
+            {% elif order.order_status == 4 %}
+                <div class="progress-bar bg-danger" style="width: 100%;">Rejected</div>
+
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

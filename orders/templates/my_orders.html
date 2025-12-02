@@ -1,0 +1,74 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% block content %}
+{% load tz %}
+
+{% include 'banner.html' with page_title="My Orders" %}
+
+<div class="container py-5">
+    
+
+    {% if all_orders %}
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Track</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in all_orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+
+                    <td>
+                        {{ order.get_order_status_display }}
+                    </td>
+
+                    <td>
+                        {% localtime on %}
+                        {{ order.created_at|localtime|date:"d M Y, h:i A" }}  
+                        {% endlocaltime %}
+                    </td>
+
+                    <td style="min-width: 200px;">
+                        <ul style="padding-left: 20px;">
+                            {% for item in order.added_items.all %}
+                                <li>{{ item.product.name }} × {{ item.quantity }}</li>
+                            {% empty %}
+                                <li>No items</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+
+                    <td>
+                        ₹{{ order.total_amount }}
+
+                    </td>
+
+                    <td>
+                        <a href="{% url 'track_order' order.id %}"
+                           class="btn btn-success btn-sm">
+                            Track Order
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    {% else %}
+        <p>No orders found.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

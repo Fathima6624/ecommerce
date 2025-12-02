@@ -1,0 +1,235 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Start -->
+<div class="container-fluid py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-md-12 col-lg-7">
+                <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
+                <h1 class="mb-5 display-3 text-primary">Organic Veggies & Fruits</h1>
+            </div>
+
+            <div class="col-md-12 col-lg-5">
+                <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active rounded">
+                            <img src="{% static 'img/hero-img-1.png' %}" class="img-fluid w-100 h-100 bg-secondary rounded" alt="Slide">
+                            <a href="#" class="btn px-4 py-2 text-white rounded">Fruits</a>
+                        </div>
+                        <div class="carousel-item rounded">
+                            <img src="{% static 'img/hero-img-2.jpg' %}" class="img-fluid w-100 h-100 rounded" alt="Slide">
+                            <a href="#" class="btn px-4 py-2 text-white rounded">Vegetables</a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+
+<!-- Features Start -->
+<div class="container-fluid featurs py-5">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-car-side fa-3x text-white"></i>
+                    </div>
+                    <h5>Free Shipping</h5>
+                    <p class="mb-0">Free on orders over ₹300</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-user-shield fa-3x text-white"></i>
+                    </div>
+                    <h5>Secure Payment</h5>
+                    <p class="mb-0">100% secure payment</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-exchange-alt fa-3x text-white"></i>
+                    </div>
+                    <h5>30 Day Return</h5>
+                    <p class="mb-0">Money-back guarantee</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fa fa-phone-alt fa-3x text-white"></i>
+                    </div>
+                    <h5>24/7 Support</h5>
+                    <p class="mb-0">Fast support anytime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features End -->
+
+<!-- ========================== -->
+<!--  Dynamic Products Section  -->
+<!-- ========================== -->
+
+<div class="container fruite py-5">
+  <div class="container py-5">
+
+    <h1 class="mb-4 text-center">Our Organic Products</h1>
+
+    <div class="row g-4 justify-content-center text-center">
+      
+      {% for product in products %}
+      <div class="col-md-6 col-lg-3 col-xl-3 d-flex justify-content-center">
+        
+        <div class="rounded position-relative fruite-item h-100 d-flex flex-column">
+
+          <div class="fruite-img">
+            <img src="{{ product.image.url }}"
+                 class="img-fluid product-img rounded-top"
+                 alt="{{ product.name }}">
+          </div>
+
+          <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+               style="top: 10px; left: 10px;">Product</div>
+
+          <div class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column">
+            
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description|truncatewords:10 }}</p>
+
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <p class="text-dark fw-bold mb-0">₹{{ product.price }}</p>
+              <a href="{% url 'productdetail' product.id %}" 
+                 class="btn border border-secondary rounded-pill px-3 text-primary">
+                View
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      {% endfor %}
+    
+    </div>
+
+  </div>
+</div>
+
+<!-- ========================== -->
+<!-- End Dynamic Products Section -->
+<!-- ========================== -->
+
+
+<!-- Services Section -->
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-6 col-lg-4">
+                <a href="#">
+                    <div class="service-item bg-secondary rounded border border-secondary">
+                        <img src="{% static 'img/featur-1.jpg' %}" class="img-fluid rounded-top w-100">
+                        <div class="px-4 rounded-bottom">
+                            <div class="service-content bg-primary text-center p-4 rounded">
+                                <h5 class="text-white">Fresh Apples</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a href="#">
+                    <div class="service-item bg-dark rounded border border-dark">
+                        <img src="{% static 'img/featur-2.jpg' %}" class="img-fluid rounded-top w-100">
+                        <div class="px-4 rounded-bottom">
+                            <div class="service-content bg-light text-center p-4 rounded">
+                                <h5 class="text-primary">Tasty Fruits</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a href="#">
+                    <div class="service-item bg-primary rounded border border-primary">
+                        <img src="{% static 'img/featur-3.jpg' %}" class="img-fluid rounded-top w-100">
+                        <div class="px-4 rounded-bottom">
+                            <div class="service-content bg-secondary text-center p-4 rounded">
+                                <h5 class="text-white">Exotic Vegetables</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Services End -->
+
+<!-- Stats Section -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="bg-light p-5 rounded">
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="counter bg-white rounded p-5 text-center">
+                        <i class="fa fa-users text-secondary"></i>
+                        <h4>Satisfied Customers</h4>
+                        <h1>1000+</h1>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="counter bg-white rounded p-5 text-center">
+                        <i class="fa fa-certificate text-secondary"></i>
+                        <h4>Quality of Service</h4>
+                        <h1>99%</h1>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="counter bg-white rounded p-5 text-center">
+                        <i class="fa fa-award text-secondary"></i>
+                        <h4>Certificates</h4>
+                        <h1>33</h1>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="counter bg-white rounded p-5 text-center">
+                        <i class="fa fa-box text-secondary"></i>
+                        <h4>Available Products</h4>
+                        <h1>89</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Stats End -->
+
+{% endblock content %}

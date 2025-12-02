@@ -1,0 +1,24 @@
+{% extends 'blank.html' %}
+{% block content %}
+
+<div class="container py-5 text-center">
+    <div class="bg-light rounded p-5 shadow-sm">
+        <h1 class="text-success mb-3">🎉 Order Placed Successfully!</h1>
+        <p>Thank you for shopping with Fruitables.</p>
+        <p>Your fresh items will be delivered soon 🚚</p>
+
+        <div class="mt-4">
+            <a href="{% url 'product' %}" class="btn btn-outline-primary me-3">Continue Shopping</a>
+            
+        </div>
+
+        <div   class="mt-4">
+            <a href="{% url 'track_order' order.id %}" class="btn btn-primary mt-3">
+    Track Your Order
+</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

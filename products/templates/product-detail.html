@@ -1,0 +1,179 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'banner.html' with page_title="Shop Detail" %}
+        
+
+
+        <!-- Single Product Start -->
+        <div class="container-fluid py-5 mt-5">
+            <div class="container py-5">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="border rounded">
+                                    <a href="#">
+                                        <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3">{{ product.name }}</h4>
+                                <p class="mb-3">Category: Fruits</p>
+                                <h5 class="fw-bold mb-3">₹{{ product.price }}</h5>
+                                <div class="d-flex mb-4">
+                                    <i class="fa fa-star text-secondary"></i>
+                                    <i class="fa fa-star text-secondary"></i>
+                                    <i class="fa fa-star text-secondary"></i>
+                                    <i class="fa fa-star text-secondary"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                
+                                <p class="mb-4">{{ product.description }}</p>
+                                <div class="input-group quantity mb-5" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                                <!-- <a href="{% url 'addtocart' product.id %}" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                 {% if user.is_authenticated %}
+<a href="{% url 'addtocart' product.id %}" 
+   class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+   <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+</a>
+{% else %}
+<a href="{% url 'login' %}" 
+   class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+   <i class="fa fa-user me-2 text-primary"></i> Login to Add
+</a>
+{% endif %}
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <nav>
+                                    <div class="nav nav-tabs mb-3">
+                                        <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
+                                            id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                            aria-controls="nav-about" aria-selected="true">Description</button>
+                                       
+                                    </div>
+                                </nav>
+                                <div class="tab-content mb-5">
+                                    <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                        <p>{{ product.description }}</p>
+                                        
+                                        <div class="px-2">
+                                            <div class="row g-4">
+                                                <div class="col-6">
+                                                    <div class="row bg-light align-items-center text-center justify-content-center py-2">
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Weight</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="mb-0">1 kg</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row text-center align-items-center justify-content-center py-2">
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Country of Origin</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Agro Farm - india</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Quality</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Organic</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row text-center align-items-center justify-content-center py-2">
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Сheck</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="mb-0">Healthy</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                        
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                       
+                                    </div>
+                                    <div class="tab-pane" id="nav-vision" role="tabpanel">
+                                        <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
+                                            amet diam et eos labore. 3</p>
+                                        <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
+                                            Clita erat ipsum et lorem et sit</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                           
+                         
+
+
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        
+
+
+
+
+
+
+                                   
+                                 
+                                     
+                                       
+                        
+
+                            <div class="col-lg-12">
+                                <div class="position-relative">
+                                    <img src="{% static 'img/banner-fruits.jpg' %}" class="img-fluid w-100 rounded" alt="">
+                                    <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
+                                        <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+            </div>
+        </div>
+        <!-- Single Product End -->
+    
+{% endblock content %}
