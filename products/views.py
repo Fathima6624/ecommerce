@@ -38,5 +38,3 @@ def listproduct(request):
 def detailproduct(request, product_id):
     product = get_object_or_404(Product, id=product_id, delete_status=1)
     return render(request, "product-detail.html", {"product": product})
-
-

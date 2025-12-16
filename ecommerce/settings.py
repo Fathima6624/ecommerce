@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home','customers','orders','products','themes'
+    'home','customers','orders','products','themes',
+    'cloudinary',
+    'cloudinary_storage',
     
 ]
 
@@ -139,4 +141,23 @@ MEDIA_URL='/media/'
 MEDIA_ROOT=BASE_DIR/"media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+# ==========================
+# CLOUDINARY CONFIGURATION
+# ==========================
+
+import cloudinary
+import os
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+)
+
+
 
