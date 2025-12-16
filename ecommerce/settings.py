@@ -28,12 +28,12 @@ STRIPE_SECRET_KEY=os.getenv("STRIPE_SECRET_KEY")
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hagrqhv!d6l+r)cpdvez1rn%o-d$nan(p2s(ds#_g8@khop3eb'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  os.getenv("DEBUG","False")=="True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  os.getenv("ALLOWED_HOSTS","localhost").split(",")
 
 
 # Application definition
@@ -128,6 +128,7 @@ STATICFILES_DIRS=[
     BASE_DIR/"static"
 ]
 
+STATIC_ROOT=BASE_DIR/'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -135,3 +136,4 @@ MEDIA_URL='/media/'
 MEDIA_ROOT=BASE_DIR/"media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
